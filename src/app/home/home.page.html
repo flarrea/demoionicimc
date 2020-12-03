@@ -1,20 +1,56 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-padding">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    
+    <ion-avatar slot="end">
+      <div *ngIf="BMI">
+      <img
+        src="assets/imgs/{{BMI.classification}}.png"
+      />
+    </div>
+    </ion-avatar>
+  
+    <ion-card-content>
+      <h4
+        style="
+          font-weight: 600;
+          color: rgba(39, 39, 39, 0.81);
+          font-size: 16px;
+        "
+      >
+        ¿Cómo te sientes hoy?
+      </h4>
+      <h6 style="font-weight: 600; color: rgb(133, 133, 133); font-size: 14px;">
+        Recuerda que debes alimentarte bien!!
+      </h6>
+    </ion-card-content>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Altura (M)</ion-label>
+        <ion-input [(ngModel)]="height"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Peso (KG)</ion-label>
+        <ion-input [(ngModel)]="weight"></ion-input>
+      </ion-item>
+
+
+        <ion-button expand="block" (click)="calculateBmi()"> Cálculo de IMC</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="BMI" text-center>
+    <h1>Su IMC es: {{ BMI.BMI }}</h1>
+    <!--<h2>Su clasificación es: {{ BMI.classification }}</h2>-->
+    <ion-thumbnail slot="start">
+    <img src="assets/imgs/{{BMI.classification}}.png">
+  </ion-thumbnail>
   </div>
 </ion-content>
